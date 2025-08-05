@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Myapp</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+  <h1>Myapp</h1>
+
+  <div class="container">
+    <!-- Chart 1: Bar Graph with Dropdown -->
+    <div class="chart-container">
+      <h2>Chart 1: Bar Graph</h2>
+      <form action="/chart1-data" method="get">
+        <select name="filter" onchange="this.form.submit()">
+          {% for filter in filters %}
+            <option value="{{ filter }}" {% if chart1_filter == filter %}selected{% endif %}>
+              {{ filter|capitalize }}
+            </option>
+          {% endfor %}
+        </select>
+      </form>
+      <img src="{{ url_for('static', filename='chart1.png') }}" alt="Chart 1">
+    </div>
+  </div>
+</body>
+</html>
